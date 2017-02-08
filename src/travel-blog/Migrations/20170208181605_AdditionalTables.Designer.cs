@@ -8,9 +8,10 @@ using travel_blog.Models;
 namespace travelblog.Migrations
 {
     [DbContext(typeof(TravelBlogContext))]
-    partial class TravelBlogContextModelSnapshot : ModelSnapshot
+    [Migration("20170208181605_AdditionalTables")]
+    partial class AdditionalTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
