@@ -166,6 +166,8 @@ C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208175351_
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208175351_Initial.Designer.cs
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208181605_AdditionalTables.cs
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208181605_AdditionalTables.Designer.cs
+C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208185308_DateToBlog.cs
+C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\20170208185308_DateToBlog.Designer.cs
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Migrations\TravelBlogContextModelSnapshot.cs
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Models\Blog.cs
 C:\Users\epicodus\Desktop\travel-blog\src\travel-blog\Models\BlogPeople.cs
