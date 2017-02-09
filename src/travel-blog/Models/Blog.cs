@@ -10,11 +10,12 @@ namespace travel_blog.Models
     [Table("Blogs")]
     public class Blog
     {
-        [Key]
+
         public int BlogId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
 
         public DateTime Date { get; set; }
+
     }
 }

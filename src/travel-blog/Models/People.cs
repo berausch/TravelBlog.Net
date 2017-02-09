@@ -13,5 +13,6 @@ namespace travel_blog.Models
         [Key]
         public int PeopleId { get; set; }
         public string Name { get; set; }
+        public string Bio { get; set; }
     }
 }

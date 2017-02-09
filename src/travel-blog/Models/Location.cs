@@ -14,6 +14,7 @@ namespace travel_blog.Models
         public int LocationId { get; set; }
         public string City { get; set; }
         public string Country { get; set;}
+        public string LocationInfo { get; set; }
 
     }
 }
