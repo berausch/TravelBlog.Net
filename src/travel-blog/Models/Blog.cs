@@ -17,5 +17,8 @@ namespace travel_blog.Models
 
         public DateTime Date { get; set; }
 
+        public List<LocationBlog> LocationBlogs { get; set; }
+
+        public List<BlogPeople> BlogPeoples { get; set; }
     }
 }

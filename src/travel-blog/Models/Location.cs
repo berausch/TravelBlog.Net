@@ -16,5 +16,7 @@ namespace travel_blog.Models
         public string Country { get; set;}
         public string LocationInfo { get; set; }
 
+        public List<LocationBlog> LocationBlogs { get; set; }
+
     }
 }

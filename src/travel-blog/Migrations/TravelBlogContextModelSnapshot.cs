@@ -21,35 +21,28 @@ namespace travelblog.Migrations
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("BlogPeopleId");
-
                     b.Property<string>("Body");
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int?>("LocationBlogId");
-
                     b.Property<string>("Title");
 
                     b.HasKey("BlogId");
-
-                    b.HasIndex("BlogPeopleId");
-
-                    b.HasIndex("LocationBlogId");
 
                     b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("travel_blog.Models.BlogPeople", b =>
                 {
-                    b.Property<int>("BlogPeopleId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("PeopleId");
 
                     b.Property<int>("BlogId");
 
-                    b.Property<int>("LocationId");
+                    b.HasKey("PeopleId", "BlogId");
 
-                    b.HasKey("BlogPeopleId");
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("PeopleId");
 
                     b.ToTable("BlogPeoples");
                 });
@@ -63,27 +56,24 @@ namespace travelblog.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<int?>("LocationBlogId");
-
                     b.Property<string>("LocationInfo");
 
                     b.HasKey("LocationId");
-
-                    b.HasIndex("LocationBlogId");
 
                     b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("travel_blog.Models.LocationBlog", b =>
                 {
-                    b.Property<int>("LocationBlogId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("LocationId");
 
                     b.Property<int>("BlogId");
 
-                    b.Property<int>("LocationId");
+                    b.HasKey("LocationId", "BlogId");
 
-                    b.HasKey("LocationBlogId");
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("LocationBlogs");
                 });
@@ -95,40 +85,37 @@ namespace travelblog.Migrations
 
                     b.Property<string>("Bio");
 
-                    b.Property<int?>("BlogPeopleId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("PeopleId");
 
-                    b.HasIndex("BlogPeopleId");
-
                     b.ToTable("Peoples");
                 });
 
-            modelBuilder.Entity("travel_blog.Models.Blog", b =>
+            modelBuilder.Entity("travel_blog.Models.BlogPeople", b =>
                 {
-                    b.HasOne("travel_blog.Models.BlogPeople")
-                        .WithMany("Blog")
-                        .HasForeignKey("BlogPeopleId");
+                    b.HasOne("travel_blog.Models.Blog", "Blog")
+                        .WithMany("BlogPeoples")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("travel_blog.Models.LocationBlog")
-                        .WithMany("Blogs")
-                        .HasForeignKey("LocationBlogId");
+                    b.HasOne("travel_blog.Models.People", "People")
+                        .WithMany("BlogPeoples")
+                        .HasForeignKey("PeopleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("travel_blog.Models.Location", b =>
+            modelBuilder.Entity("travel_blog.Models.LocationBlog", b =>
                 {
-                    b.HasOne("travel_blog.Models.LocationBlog")
-                        .WithMany("Locations")
-                        .HasForeignKey("LocationBlogId");
-                });
+                    b.HasOne("travel_blog.Models.Blog", "Blog")
+                        .WithMany("LocationBlogs")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity("travel_blog.Models.People", b =>
-                {
-                    b.HasOne("travel_blog.Models.BlogPeople")
-                        .WithMany("People")
-                        .HasForeignKey("BlogPeopleId");
+                    b.HasOne("travel_blog.Models.Location", "Location")
+                        .WithMany("LocationBlogs")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

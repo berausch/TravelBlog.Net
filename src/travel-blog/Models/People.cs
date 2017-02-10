@@ -10,9 +10,12 @@ namespace travel_blog.Models
     [Table("Peoples")]
     public class People
     {
+
         [Key]
         public int PeopleId { get; set; }
         public string Name { get; set; }
         public string Bio { get; set; }
+
+        public List<BlogPeople> BlogPeoples { get; set; }
     }
 }

@@ -10,11 +10,9 @@ namespace travel_blog.Models
     [Table("LocationBlogs")]
     public class LocationBlog
     {
-        public int LocationBlogId { get; set; }
         public int LocationId { get; set; }
+        public Location Location { get; set; }
         public int BlogId { get; set; }
-
-        public virtual ICollection<Location> Locations { get; set; }
-        public virtual ICollection<Blog> Blogs { get; set; }
+        public Blog Blog { get; set; }
     }
 }

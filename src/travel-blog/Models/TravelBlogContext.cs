@@ -18,9 +18,6 @@ namespace travel_blog.Models
 
         public DbSet<People> Peoples { get; set; }
 
-        public DbSet<BlogPeople> BlogPeoples { get; set; }
-
-        public DbSet<LocationBlog> LocationBlogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -33,7 +30,32 @@ namespace travel_blog.Models
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.Entity<LocationBlog>()
+                .HasKey(l => new { l.LocationId, l.BlogId });
+
+            builder.Entity<LocationBlog>()
+                .HasOne(lb => lb.Location)
+                .WithMany(l => l.LocationBlogs)
+                .HasForeignKey(lb => lb.LocationId);
+
+            builder.Entity<LocationBlog>()
+                .HasOne(lb => lb.Blog)
+                .WithMany(b => b.LocationBlogs)
+                .HasForeignKey(lb => lb.BlogId);
+
+            builder.Entity<BlogPeople>()
+                .HasKey(p=> new { p.PeopleId, p.BlogId });
+
+            builder.Entity<BlogPeople>()
+                .HasOne(bp => bp.People)
+                .WithMany(p => p.BlogPeoples)
+                .HasForeignKey(lb => lb.PeopleId);
+
+            builder.Entity<BlogPeople>()
+                .HasOne(lb => lb.Blog)
+                .WithMany(b => b.BlogPeoples)
+                .HasForeignKey(lb => lb.BlogId);
+
         }
     }
 }

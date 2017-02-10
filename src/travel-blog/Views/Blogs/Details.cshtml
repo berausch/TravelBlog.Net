@@ -1,18 +1,40 @@
 ﻿@model travel_blog.Models.Blog
 
-{
+@{
     ViewData["Title"] = @Html.DisplayFor(model => model.Title);
-Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.Title)</h2>
-<hr />
 
-<p>@Html.DisplayFor(model => model.Body)</p>
 
-@foreach (var locationStuff in ViewBag.LocationStuff)
-{
-    <p>@locationStuff</p>
-}
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+    <hr />
+    <div class="row">
+        <div class="col-sm-8">
 
-<p>@Html.ActionLink("Back", "Index", "Home", null)</p>
+            <p>@Html.DisplayFor(model => model.Body)</p>
+
+        </div>
+        <div class="col-sm-2">
+            @foreach (var location in Model.LocationBlogs)
+            {
+
+                <p>@Html.ActionLink(location.Location.City, "Details", "Locations", new { id = location.LocationId })</p>
+                <br />
+            }
+        </div>
+
+        <div class="col-sm-2">
+
+            @foreach (var people in Model.BlogPeoples)
+            {
+
+                <p>@Html.ActionLink(people.People.Name, "Details", "Peoples", new { id = people.PeopleId })</p>
+                <br />
+            }
+         </div>
+
+    </div>
+
+
+    <p>@Html.ActionLink("Back", "Index", "Home", null)</p>

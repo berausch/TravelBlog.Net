@@ -21,26 +21,13 @@ namespace travel_blog.Controllers
 
         public IActionResult Details(int id)
         {
-            var thisLocationIds = db.LocationBlogs
-                .Include(locations => locations.Locations)
-                .Where(p => p.BlogId == id)
-                .ToList();
-
-            List<string> Cities = new List<string> { };
- 
-
-            foreach (var loc in thisLocationIds) 
-            {
-                var thisLocation = db.Locations.FirstOrDefault(locate => locate.LocationId == loc.LocationId);
-                Cities.Add(thisLocation.City.ToString());
-            }
-            
-           
             var thisEntry = db.Blogs
+                .Include(locationId =>locationId.LocationBlogs)
+                .ThenInclude(loc => loc.Location)
+                .Include(peepId => peepId.BlogPeoples)
+                .ThenInclude(peep => peep.People)
                 .FirstOrDefault(blogs => blogs.BlogId == id);
 
-
-            ViewBag.LocationStuff = Cities;
             return View(thisEntry);
         }
 

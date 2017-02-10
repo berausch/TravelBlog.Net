@@ -40,6 +40,8 @@ namespace travel_blog
         {
             loggerFactory.AddConsole();
 
+            app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
