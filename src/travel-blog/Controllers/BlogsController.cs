@@ -22,7 +22,7 @@ namespace travel_blog.Controllers
         public IActionResult Details(int id)
         {
             var thisEntry = db.Blogs
-                .Include(locationId =>locationId.LocationBlogs)
+                .Include(locationId => locationId.LocationBlogs)
                 .ThenInclude(loc => loc.Location)
                 .Include(peepId => peepId.BlogPeoples)
                 .ThenInclude(peep => peep.People)
