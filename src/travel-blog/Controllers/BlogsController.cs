@@ -31,5 +31,11 @@ namespace travel_blog.Controllers
             return View(thisEntry);
         }
 
+        public IActionResult Create()
+        {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
+            ViewBag.PeopleId = new SelectList(db.Peoples, "PeopleId", "Name");
+            return View()
+        }
     }
 }

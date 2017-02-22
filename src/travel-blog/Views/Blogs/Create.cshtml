@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Make an Entry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model travel_blog.Models.Blog
+<h2>Create an Entry</h2>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m=> m.Title)
+    @Html.EditorFor(m=> m.Title)
+
+    @Html.LabelFor(m => m.Body)
+    @Html.TextAreaFor(m => m.Body)
+
+    <input type="submit" value="Save" class="btn" />
+}
+
