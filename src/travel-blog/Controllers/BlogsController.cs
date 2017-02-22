@@ -14,10 +14,7 @@ namespace travel_blog.Controllers
     public class BlogsController : Controller
     {
         private TravelBlogContext db = new TravelBlogContext();
-        public IActionResult Index()
-        {
-            return View();
-        }
+
 
         public IActionResult Details(int id)
         {
@@ -35,7 +32,22 @@ namespace travel_blog.Controllers
         {
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City");
             ViewBag.PeopleId = new SelectList(db.Peoples, "PeopleId", "Name");
-            return View()
+            return View();
         }
+
+        [HttpPost] 
+        public IActionResult Create(Blog blog)
+        {
+            db.Blogs.Add(blog);
+            db.SaveChanges();
+            return RedirectToAction("NewEntryAdd", new { id = blog.BlogId });
+        }
+
+        public IActionResult NewEntryAddLocation(int id)
+        {
+           var thisEntry = db.Blogs.Firstor
+            return View();
+        }
+
     }
 }
